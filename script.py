@@ -22,14 +22,25 @@ disNode = allNodes.new(type="ShaderNodeDisplacement")
 material_output = allNodes.get("Material Output")
 
 textImage = allNodes.new(type="ShaderNodeTexImage")
-textImage.image =bpy.data.images.load(filepath="C:\\Users\\ducha\\OneDrive\\Desktop\\Screenshot 2022-11-20 114700.png")
+
+cRamp = allNodes.new(type="ShaderNodeValToRGB")
+
+textImage.image = bpy.data.images.load(filepath="D:\Programme\GitHub\Repository\Berggenerator\irland_height_map.png")
 textImage.image.colorspace_settings.name = 'Linear'
 mat.node_tree.links.new(disNode.outputs[0], material_output.inputs[2])
 mat.node_tree.links.new(textImage.outputs[0], disNode.inputs[0])
+mat.node_tree.links.new(textImage.outputs[0], cRamp.inputs[0])
+mat.node_tree.links.new(cRamp.outputs[0], allNodes["Principled BSDF"].inputs[0])
+
+cRamp.color_ramp.elements[0].position = (0.500)
+cRamp.color_ramp.elements[0].color = (0.33,0.1,0,1)
+cRamp.color_ramp.elements[1].position = (0.520)
 disNode.inputs[2].default_value = 0.3
 bpy.context.active_object.data.materials.append(mat)
-bpy.ops.object.editmode_toggle()
 
+#bpy.ops.object.shade_smooth()
+
+bpy.ops.object.editmode_toggle()
 
 
 
