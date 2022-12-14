@@ -49,7 +49,7 @@ mat.node_tree.links.new(disNode.outputs[0], material_output.inputs[2])
 #mat.node_tree.links.new(textImage.outputs[0], colorRamp.inputs[0])
 mat.node_tree.links.new(cRamp.outputs[0], allNodes["Principled BSDF"].inputs[0])
 mat.node_tree.links.new(colorRamp.outputs[0], allNodes["Principled BSDF"].inputs[9])
-
+bpy.context.active_object.data.materials.append(mat)
 cRamp.color_ramp.elements[0].position = (0.600)
 cRamp.color_ramp.elements[0].color = (0.33,0.1,0,1)
 cRamp.color_ramp.elements[1].position = (0.950)
@@ -60,17 +60,37 @@ colorRamp.color_ramp.elements[1].position = (0.482)
 
 disNode.inputs[2].default_value = 3.3
 disNode.inputs[1].default_value = 0
-
+bpy.ops.object.editmode_toggle()
 obj.modifiers.new("ps", type='PARTICLE_SYSTEM')
 ps= obj.particle_systems[0].settings
 ps.type ='HAIR'
 ps.use_advanced_hair = True
-ps.render_type = 'COLLECTION'
+ps.render_type = 'OBJECT'
 bpy.ops.import_scene.obj(filepath="C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\smalltree.obj")
 bpy.ops.import_scene.obj(filepath="C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\smalltree2.obj")
 
-bpy.context.active_object.data.materials.append(mat)
+obj.modifiers.new("psgrass", type='PARTICLE_SYSTEM')
+psgrass= obj.particle_systems[1].settings
+psgrass.type ='HAIR'
+psgrass.use_advanced_hair = True
+psgrass.render_type = 'OBJECT'
+psgrass.count = 1000
+bpy.context.object.particle_systems["psgrass"].seed = 81
+
+bpy.ops.import_scene.obj(filepath="C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\High_Grass.obj")
+
+
+bpy.ops.object.select_all(action='DESELECT')
+Tree1 = bpy.data.objects["Tree_1"]
+Tree2 = bpy.data.objects["Tree_2"]
+grass = bpy.data.objects["High_Grass"]
+psgrass.instance_object = grass
+ps.instance_object = Tree1
+Tree1.select_set(True)
+Tree2.select_set(True)
+bpy.ops.transform.resize(value=(0.01, 0.01, 0.01))
+
 
 #bpy.ops.object.shade_smooth()
 
-bpy.ops.object.editmode_toggle()
+
