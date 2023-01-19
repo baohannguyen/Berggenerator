@@ -46,17 +46,6 @@ snowRoughnessPath = "C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerato
 snowBaseColorPath = "C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\snow_basecolor.jpg"
 
 snowambOcclusionPath = "C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\snow_ambientOcclusion.jpg"
-hightmapPath = "D:\\Programme\\GitHub\\Repository\\Berggenerator\\ruap.png"
-#"C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\ruap.png"
-
-sceneryTree1Path = "D:\\Programme\\GitHub\\Repository\\Berggenerator\\smalltree.obj"
-#"C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\smalltree.obj"
-
-sceneryTree2Path = "D:\\Programme\\GitHub\\Repository\\Berggenerator\\smalltree2.obj"
-#"C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\smalltree2.obj"
-
-sceneryGrassPath = "D:\\Programme\\GitHub\\Repository\\Berggenerator\\High_Grass.obj"
-#"C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\High_Grass.obj"
 
 baseContext = bpy.context
 
