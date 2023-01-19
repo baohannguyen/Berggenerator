@@ -1,6 +1,7 @@
 import bpy
 import mathutils
 import random
+
 import numpy as np
 
 bpy.ops.mesh.primitive_plane_add(size = 1)
@@ -45,6 +46,17 @@ snowRoughnessPath = "C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerato
 snowBaseColorPath = "C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\snow_basecolor.jpg"
 
 snowambOcclusionPath = "C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\snow_ambientOcclusion.jpg"
+hightmapPath = "D:\\Programme\\GitHub\\Repository\\Berggenerator\\ruap.png"
+#"C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\ruap.png"
+
+sceneryTree1Path = "D:\\Programme\\GitHub\\Repository\\Berggenerator\\smalltree.obj"
+#"C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\smalltree.obj"
+
+sceneryTree2Path = "D:\\Programme\\GitHub\\Repository\\Berggenerator\\smalltree2.obj"
+#"C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\smalltree2.obj"
+
+sceneryGrassPath = "D:\\Programme\\GitHub\\Repository\\Berggenerator\\High_Grass.obj"
+#"C:\\Users\\ducha\\OneDrive\\Dokumente\\GitHub\\Berggenerator\\High_Grass.obj"
 
 baseContext = bpy.context
 
@@ -245,6 +257,7 @@ Tree1.hide_set(state=True)
 Tree2.hide_set(state=True)
 Grass.hide_set(state=True)
 
+Tree1.scale = (treeScale, treeScale, treeScale)
 
 
 class MoreSnow (bpy.types.Operator):
@@ -267,6 +280,8 @@ class LessSnow (bpy.types.Operator):
 
         return {'FINISHED'}
 
+add_Particle_Scenery("treeParticles", 0, 1000, Tree1)
+add_Particle_Scenery("grassParticles", 1, 1000, Grass)
 
 bpy.utils.register_class(MoreSnow)
 bpy.utils.register_class(LessSnow)
